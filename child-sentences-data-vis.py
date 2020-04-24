@@ -131,6 +131,10 @@ def find_verb_coded(sentence):
 
 # Uses codes
 def find_subject(sentence):
+    # Replace 'Cname' with 'i' and 'mommy' with 'mom
+    sentence = sentence.replace('Cname', 'i')
+    sentence = sentence.replace('mommy', 'mom')
+    
     words_list = sentence.split()
     for word in words_list:
         if re.search('\\[SV:\\dP?\\]', word) is not None:
