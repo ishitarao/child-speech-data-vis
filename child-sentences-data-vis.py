@@ -66,6 +66,7 @@ def clean_sentence(sentence):
     sentence = sentence.replace('/ing', 'ing')
     sentence = sentence.replace('/ed', 'ed')
     sentence = sentence.replace('/s', 's')
+    # TODO: create situations when /s is 'es' and when it's 's'
 
     # Clean asterisks (the entire word)
     sentence = re.sub('\\*.*?\\s', '', sentence)
@@ -134,7 +135,7 @@ def find_subject(sentence):
     # Replace 'Cname' with 'i' and 'mommy' with 'mom
     sentence = sentence.replace('Cname', 'i')
     sentence = sentence.replace('mommy', 'mom')
-    
+
     words_list = sentence.split()
     for word in words_list:
         if re.search('\\[SV:\\dP?\\]', word) is not None:
@@ -219,6 +220,7 @@ def classify_text(sentences_list):
         verb = find_verb_coded(sentence)
 
         sentence = clean_sentence(sentence)
+
         doc = nlp(sentence)
         if not is_ads(doc):
             print(doc)
@@ -235,10 +237,10 @@ def classify_text(sentences_list):
 
 
 def create_graph(df, child_id):
-    sns.heatmap(df, annot=True, fmt="g", cmap='viridis').set(xlabel='Subject', ylabel='Verb')
+    sns.heatmap(df, annot=True, fmt="g", cmap="nipy_spectral", center=13.5).set(xlabel='Subject', ylabel='Verb')
 
     # uncomment this line if you want to save the graph to file:
-    # plt.savefig(child_id + '_heatmap.png', dpi=400)
+    plt.savefig(child_id + '_heatmap.png', dpi=400)
     plt.show()
 
 # ----------------------------------------------End function definitions---------------------------------------------- #
