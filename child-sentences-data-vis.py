@@ -237,10 +237,15 @@ def classify_text(sentences_list):
 
 
 def create_graph(df, child_id):
-    sns.heatmap(df, annot=True, fmt="g", cmap="nipy_spectral", center=13.5).set(xlabel='Subject', ylabel='Verb')
+    total = int(df.sum(skipna=True).sum())
+    caption = "Unique Subjects: " + str(len(df.columns)) \
+              + "    Unique Verbs: " + str(len(df.index)) \
+              + "    Unique SV Combinations: " + str(total)
+    x_label = "Subject\n\n" + caption
+    sns.heatmap(df, annot=True, fmt="g", cmap="nipy_spectral", center=13.5).set(xlabel=x_label, ylabel='Verb')
 
     # uncomment this line if you want to save the graph to file:
-    plt.savefig(child_id + '_heatmap.png', dpi=400)
+    # plt.savefig(child_id + '_heatmap.png', dpi=400)
     plt.show()
 
 # ----------------------------------------------End function definitions---------------------------------------------- #
