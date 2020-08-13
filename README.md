@@ -9,7 +9,7 @@ This program categorises child sentences based on the subject-verb combinations 
 
 ## Dependencies
 * Python 3.7
-* sPaCy (An NLP Library)
+* spaCy (An NLP Library)
 * Seaborn
 * Matplotlib
 * Pandas
